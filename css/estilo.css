@@ -1,23 +1,245 @@
+/* No CSS Tudo é Box(Caixa)
+
+--Box Modal--
+ Largura
+ Espaçamento
+ Bordas
+ Preenchimento
+
+ 
+ Posicionamento
+ 
+
+
+
+*/
+
 body{
-    background-color: e5e5e5;
-    color: #25282b;
-    text-align: center;
-}
-button{
-    color: #ff5E84;
-    border: none; 
-    font-weight: bold;
-    background: none;
+    background-color: #e5e5e5;
+    color: #25282b;    
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    
 }
 
+    /*--CSS Global na Pagina--*/
+a {
+    color: #ff5E84;
+    font-weight: bold;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+p, idescription{
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+}
+   /*Fim de CSS global*/
+
+
+   /*--- 1. Box total da Página----*/
+#container{
+    width: 90%; /*Se por ventura a pagina for menor que 980px, a largura será por % na página*/
+    max-width: 980px; /*Largura maxima de 980 px dentro da página*/
+    margin:40px auto;
+    display: flex;
+
+    /*overflow: hidden;  ---> è como se fosse um tampa da caixa, não deixa o conteúdo transbordar*/
+}
+    /*- Fim ---- 1. Box total da Página----*/
+ 
+#intro{
+    width: 300px;
+    margin-right: 20px;
+}
+main{
+    margin:32px 0;
+}
+#buttons{
+    display: flex;
+    justify-content: space-between; /*Espaço ao meio*/
+    margin-top: 32px;
+}
+
+button{
+    background: none;
+    color: #ff5E84;
+    border: none; 
+
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+
+    font-weight: bold;
+    cursor: pointer;
+    outline: 0;
+}
+button:hover{
+    text-decoration: underline;/*coloca uma linha*/
+}
 .fat{
     color: white;
     background: #ff5E84;
+    width: 150px;
+    height: 40px;
+    border-radius: 6px;
+    box-shadow: 0px 8px 16px rgba(255, 0, 92, 0.16); /*Coloca sombra no botão (x,y blur(borrar))*/
+    
 }
-#footer a{
-    color: rgb(34, 30, 70);
+.fat:hover{
     text-decoration: none;
 }
-.hiden{
-    display: none;
+footer{
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.2px;
+    color: #777;
 }
+footer a{
+    opacity: 0.8;
+}
+.ideias{
+    display: flex;
+    margin-bottom: 32px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px -15px black;
+    padding: 32px;
+}
+.ideias img{
+    width: 60px;
+    height: 60px;
+    margin-right: 32px;
+}
+.ideias h3{
+    margin: 0;
+}
+.ideias p{
+    margin: 8px 0;
+    color: #777;
+}
+.ideias .description{
+    margin: 16px 0;
+}
+
+
+/*---Modal----*/
+#modal {
+    background-color: #ff5E84;
+    position: absolute;
+    top: 0; /*tela absolute top 0, vai para o top lado esquerdo*/    
+    
+    width: 100vw; /*Preenche com a largura total da tela, coforme o tamenho do dispositivo (vw = viewport)*/
+    height: 100vw; /* Preenche com o tamanho total da tela...*/
+    
+    display: flex;     
+    justify-content: center; /*Centraliza no eixo x (largura)*/
+
+    transition: 500ms;
+}
+#modal .content {
+    margin-top: 128px;
+    color: white;
+}
+#modal h1 {
+    text-align: center;
+    text-transform: uppercase; /*todo texto com letra MAISCULA*/
+}
+#modal form {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px; /*Faz a separação entre as coluna do grid*/ 
+}
+.content form div:nth-child(3),
+.content form div:nth-child(4),
+.content form div:nth-child(5) {
+    grid-column: span 2; /*Faz que a div(3,4 e 5) espandi até a coluna 2 do grid*/
+}
+
+form input, 
+    textarea {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;/*Soma o padding com o width, e nao deixa extrapolar*/
+
+    border-radius: 6px;
+    border: 1px solid rgba(141, 25, 52, 0.5);
+    outline: 0;
+
+    font-size: 16px;
+}
+form label  {
+    font-weight: 600;
+    line-height: 32px;
+    letter-spacing: 0.8px;
+}
+form a{
+    width: 150px;
+    height: 40px;
+
+    background-color: #ffffff22;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    border-radius: 6px;
+
+    align-self: flex-end;
+
+    transition: 300ms;
+}
+form a:hover{
+    background-color: #fff;
+    color: #ff5E84;
+
+    text-decoration: none;
+
+}
+form button {
+    background-color: white;
+    width: 150px;
+    height: 40px;
+
+    border-radius: 6px;
+    cursor: pointer;
+
+    margin-top: 32px;
+
+    grid-column: 2; /*Coloca o butto na coluna 2*/
+    justify-self: end;
+    transition: 300ms;
+}
+form button:hover {
+    background-color: #0984e3;
+    color: white;
+    text-decoration: none;
+}
+#modal.hiden {
+    opacity: 0; /*Usado esse pq display não aceita transition*/
+    visibility: hidden;
+    
+}
+
+/*
+Display: inline-block   -->> Sua largura ocupa o tamanho seu tamanho real na pagina, 
+                             ficando um do lado do outro se tiver espaço na linha.
+
+Display: Block          --> Sua largura ocupa a pagina toda (width 100%) jogando o 
+                            proximo para linha de baixo.
+*/
+
+
