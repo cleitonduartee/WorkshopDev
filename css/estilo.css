@@ -21,6 +21,9 @@ body{
     font-family: 'Montserrat', sans-serif;
     
 }
+body.hideScroll{
+    overflow: hidden;
+}
 
     /*--CSS Global na Pagina--*/
 a {
@@ -52,7 +55,7 @@ p, idescription{
  
 #intro{
     width: 300px;
-    margin-right: 20px;
+    margin-right: 64px;
 }
 main{
     margin:32px 0;
@@ -80,18 +83,31 @@ button{
 button:hover{
     text-decoration: underline;/*coloca uma linha*/
 }
-.fat{
+.botao{
     color: white;
     background: #ff5E84;
+
     width: 150px;
     height: 40px;
-    border-radius: 6px;
+    
+    font-size: 14px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
     box-shadow: 0px 8px 16px rgba(255, 0, 92, 0.16); /*Coloca sombra no botão (x,y blur(borrar))*/
     
 }
-.fat:hover{
+.botao:hover{
+    background-color: #0984e3;
     text-decoration: none;
 }
+
+
 footer{
     text-align: center;
     font-size: 14px;
@@ -133,17 +149,22 @@ footer a{
     background-color: #ff5E84;
     position: absolute;
     top: 0; /*tela absolute top 0, vai para o top lado esquerdo*/    
-    
-    width: 100vw; /*Preenche com a largura total da tela, coforme o tamenho do dispositivo (vw = viewport)*/
-    height: 100vw; /* Preenche com o tamanho total da tela...*/
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /*width: 100vw; /*Preenche com a largura total da tela, coforme o tamenho do dispositivo (vw = viewport)*/
+    /*height: 100vw; /* Preenche com o tamanho total da tela...*/
     
     display: flex;     
     justify-content: center; /*Centraliza no eixo x (largura)*/
 
     transition: 500ms;
 }
+#modal.addScroll{
+    overflow: auto;
+}
 #modal .content {
-    margin-top: 128px;
+    margin-top: 5%;
     color: white;
 }
 #modal h1 {
@@ -153,7 +174,7 @@ footer a{
 #modal form {
     width: 80%;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto 15%;
     display: grid;
     grid-template-columns: 1fr 1fr;
 
@@ -232,6 +253,61 @@ form button:hover {
     opacity: 0; /*Usado esse pq display não aceita transition*/
     visibility: hidden;
     
+}
+
+
+/* IDEIA.html */
+#page-ideias #container {
+    display: block;
+}
+
+#page-ideias header {
+    display: flex;
+    justify-content: space-between;
+}
+#page-ideias nav{
+    display: flex;
+    align-items: center;
+    
+}
+#page-ideias nav li{
+    list-style-type: none;
+    margin-right: 16px;
+}
+#page-ideias nav li a{
+    color: #25282b
+}
+#page-ideias nav li a.botao{
+    color: white
+}
+#page-ideias nav li:last-child{
+    margin: 0;
+}
+
+#page-ideias section#title{
+    text-align: center;
+    
+}
+#page-ideias section#title p {
+    opacity: 0.7;
+    margin: 0;
+}
+#page-ideias section#title h1{
+    margin: 0;
+    font-size: 28px;
+}
+#page-ideias section#ideias{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px
+}
+#page-ideias section#ideias .ideias{
+    margin: 0;
+}
+section#title,
+section#ideias,
+footer{
+    margin-top: 64px;
 }
 
 /*
