@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% set bodyId = "page-ideias" %}    <!-- variavel criada para levar nome do id do body-->
+
+{% block title %}
+    <title>Ideias - Casa Criativa</title> -->
+{% endblock title %}
+
+
+
+{% block content %}         
+    <header>
+        <a href="/">
+            <img src="img/logo.png" alt="Imagem do Logomarca">
+        </a>
+        <nav>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="#" onclick="onOff()" class="botao">Nova Ideia</a></li>
+        </nav>
+    </header>
+
+    <section id="title">
+        <p>em exibição</p>
+        <h1>Ideias</h1>
+    </section>
+
+    <main>
+        <section id="ideias">
+
+            {% include "all_ideias.html" %}
+
+
+        </section>
+    </main>
+
+    <footer>
+        <p id="footer">com ❤️ <a href="img/pp.jpg" target="_blank">CleitonDuarte</a> </p>
+    </footer>
+{% endblock content %}

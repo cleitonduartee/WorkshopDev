@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <section id="intro">
+
+        <header>
+            <img src="img/logo.png" alt="Imagem do Logomarca">
+        </header>
+
+        <main>
+            <p>
+            Ficar em casa em períodos longos, não deve ser nada fácil.
+            </p>
+            <p>
+                Por isso, iremos catalogar ídeias,<strong> brincadeiras, jogos, filmes,
+                livros, cursos, dicas</strong> e tudo que for necessário para tornar esse momento
+                mais interessante.
+            </p>
+            <p>
+                Comece clicando em ver ideias para ver as 
+                ideias cadastradas e contribua adicionando a sua ideia.
+            </p>                
+        </main>
+
+        <section id="buttons">
+            <button onclick="onOff()">+ Adicionar Ideia</button>
+            <a href="/ideias" class="botao">Ver Ideias</a>
+        </section>
+        
+        <footer>
+            <p id="footer">com ❤️ <a href="img/pp.jpg" target="_blank">CleitonDuarte</a> </p>
+        </footer>
+
+    
+    </section>
+
+    <section id="last-ideias">
+
+        {% include "all_ideias.html" %}
+
+    </section>
+
+{% endblock %}

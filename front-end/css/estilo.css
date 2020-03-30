@@ -147,7 +147,7 @@ footer a{
 /*---Modal----*/
 #modal {
     background-color: #ff5E84;
-    position: absolute;
+    position: fixed;
     top: 0; /*tela absolute top 0, vai para o top lado esquerdo*/    
     bottom: 0;
     left: 0;
@@ -307,7 +307,7 @@ form button:hover {
 section#title,
 section#ideias,
 footer{
-    margin-top: 64px;
+    margin-top: 32px;
 }
 
 /*
