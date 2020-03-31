@@ -5,54 +5,13 @@
 
 const express = require("express");
 const server = express();
+const db = require("./db")
 
-const ideas = [
-    {
-        img:"https://image.flaticon.com/icons/svg/2729/2729007.svg",
-        title:"Cursos de Programação",
-        category:"Estudo",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas",
-        url:"http://rocketseat.com.br"
-    },
-    {
-        img:"https://image.flaticon.com/icons/svg/2729/2729005.svg",
-        title:"Exercícios",
-        category:"Saude",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas",
-        url:"http://rocketseat.com.br"
-    },
-    {
-        img:"https://image.flaticon.com/icons/svg/2729/2729027.svg",
-        title:"Meditação",
-        category:"Mentalidade",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas",
-        url:"http://rocketseat.com.br"
-    },
-    {
-        img:"https://image.flaticon.com/icons/svg/2729/2729032.svg",
-        title:"Karaokê",
-        category:"Diversão em Familia",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas",
-        url:"http://rocketseat.com.br"
-    },
-    {
-        img:"https://image.flaticon.com/icons/svg/2729/2729038.svg",
-        title:"Pintura",
-        category:"Criatividade",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas",
-        url:"http://rocketseat.com.br"
-    },
-    {
-        img:"https://image.flaticon.com/icons/svg/2729/2729048.svg",
-        title:"Recortes",
-        category:"Criatividade",
-        description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas",
-        url:"http://rocketseat.com.br"
-    },
-]
 
 //configurar arquivos static 
 server.use(express.static("front-end"));
+
+server.use(express.urlencoded({ extended: true }));
 
 //configuração do nunjucks (Instalado para ter a possibilidade de criar variavei que comunique com server e html)  --- npm i nunjucks
 const nunjucks = require("nunjucks");
@@ -63,25 +22,76 @@ nunjucks.configure("views", {         //---Passado 2 parametros: 1-a pasta onde 
 
 //criei uma rota
 server.get("/", function(request, response){
-    
-    const revertIdeas = [...ideas].reverse();
 
-    const lastIdeas = []
-    for(idea of revertIdeas){
-        if(lastIdeas.length<2){
-            lastIdeas.push(idea);
+    db.all(`SELECT * FROM ideas`, function(err, rows){
+        if(err) {
+            console.log(err)
+            return response.send("Erro no Banco de Dados!")
         }
-    }
+
+        const revertIdeas = [...rows].reverse();
+
+        const lastIdeas = []
+        for(idea of revertIdeas){
+            if(lastIdeas.length<2){
+                lastIdeas.push(idea);
+            }
+        }
+        return response.render("index.html", { ideas: lastIdeas });
+    })
     
-    return response.render("index.html", { ideas: lastIdeas });
+    
+    
+    
 
-});
+})
+
 server.get("/ideias", function(request, response){
-    const revertIdeas = [...ideas].reverse();
 
-    return response.render("ideias.html", {ideas: revertIdeas}); /**_dirname carrega a pasta */
+    db.all(`SELECT * FROM ideas`, function(err, rows){
+        if(err) {
+            console.log(err)
+            return response.send("Erro no Banco de Dados!")
+        }
+
+        const revertIdeas = [...rows].reverse();
+
+        return response.render("ideias.html", {ideas: revertIdeas}); /**_dirname carrega a pasta */
+    })
 
 });
+
+server.post("/", function(request, response){  
+
+        const query = `
+    INSERT INTO ideas(
+        image,
+        title,
+        category,
+        description,
+        link
+    ) VALUES (?,?,?,?,?);
+ `  
+    const values = [
+
+       request.body.image,
+       request.body.title,
+       request.body.category,
+       request.body.description,
+       request.body.link,
+
+]
+    
+    db.run(query, values, function(err){
+        if(err) {
+            console.log(err)
+            return response.send("Erro no Banco de Dados!")
+        }
+        return response.redirect("/ideias")
+        
+    })
+
+})
 
 //liguei o servidor na porta 3000
 server.listen(3000)

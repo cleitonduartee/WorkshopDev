@@ -2,9 +2,9 @@
     <div class="content">
         <h1>Nova Ideia</h1>
 
-        <form >
+        <form action="/" method="POST" onsubmit="return validador(event)" >
             <div class="input-wrapper">
-                <label for="title">Título da Ideiad</label>
+                <label for="title">Título da Ideia</label>
                 <input type="text" name="title">                    
             </div>
 
@@ -25,7 +25,7 @@
 
             <div class="input-wrapper">
                 <label for="link">Link da ideia</label>
-                <input type="url" name="image">
+                <input type="url" name="link">
             </div>
 
             <a href="#" onclick="onOff()">Voltar</a>

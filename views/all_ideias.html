@@ -1,6 +1,6 @@
 {% for idea in ideas %}
     <div class="ideias">
-        <img src="{{idea.img}}" alt="Imagem de Curso de {{idea.title}}">
+        <img src="{{idea.image}}" alt="Imagem de Curso de {{idea.title}}">
 
         <div class="content">
             <h3>{{idea.title}}</h3>
@@ -8,7 +8,11 @@
             <div class="description">
                 {{idea.description}}
             </div>
-            <a href="{{idea.url}}" target="_black">Ir para ídeia</a>
+            <a href="{{idea.link}}" target="_black">Ir para ídeia</a>
+            
         </div>
+    <img src="https://image.flaticon.com/icons/svg/121/121113.svg" alt="Excluir" onclick="excluir('{{ idea.id }}')" id="excluir" >
+   
+        
     </div>
 {%endfor%}

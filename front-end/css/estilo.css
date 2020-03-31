@@ -121,16 +121,33 @@ footer a{
 }
 .ideias{
     display: flex;
+    justify-content: space-between;
     margin-bottom: 32px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 16px -15px black;
     padding: 32px;
 }
+.ideias .content{
+    width: 75%;
+}
 .ideias img{
+    margin-right: 10px;
     width: 60px;
     height: 60px;
-    margin-right: 32px;
+   
+}
+.ideias #excluir{
+   
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    
+}
+.ideias #excluir:hover{
+   transform: scale(1.1);
+    
 }
 .ideias h3{
     margin: 0;
