@@ -91,6 +91,17 @@ server.post("/", function(request, response){
         
     })
 
+
+})
+server.delete("/ideias/:id", function(requeste, response){
+    const { id }   = requeste.params
+    console.log(id)
+    db.run(`DELETE FROM ideas WHERE id = ?`,[id], function(err){
+        if(err) return console.log(err)
+
+       // response.send("ok")
+        return response.redirect("/ideias")
+    });
 })
 
 //liguei o servidor na porta 3000

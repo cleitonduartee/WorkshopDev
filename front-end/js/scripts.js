@@ -1,4 +1,3 @@
-const db = require("../../db");
 
 function onOff(){
         document.querySelector("#modal").classList
@@ -15,14 +14,44 @@ function validador(event){
 
      console.log(event);
 }
-function excluir(event){
 
-   
+async function excluir(id){
+         
+        console.log(id)   
+        
+         fetch(`http://localhost:3000/ideias/${id}`, {
+                  method: 'DELETE',
+                })
+                .then((res)=> { 
+                        if(res = "ok"){
+                                window.location.reload()  
+                                alert("Excluido!") 
+                        }else{
+                                alert("ERRO")
+                        }
+                });
+                         
+                                    
+}
 
-        db.run(`DELETE FROM ideas WHERE id = ?`,[event], function(err){
-                        if(err) return console.log(err)
-                
-                        console.log("Deletei", this)
-                    });
-                
+function validar(event){
+        const ValoresCampos = [
+                "title",
+                "category",
+                "img",
+                "description",
+                "link"                
+        ]
+        const isEmpty = ValoresCampos.find((value)=>{
+               const checkIfIsString = typeof event.target[value].value ==="string";
+               const checkIfIsEmpty = !event.target[value].value.trim()
+
+               if(checkIfIsEmpty && checkIfIsString){
+                    return true   
+               }
+        });
+       if(isEmpty){
+                event.preventDefault();
+               alert("por favor, preencha todos os campos!")
+       }
 }
